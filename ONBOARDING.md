@@ -35,7 +35,7 @@ If the key was pasted in chat:
    INTERVALS_API_KEY=<key>
    INTERVALS_ATHLETE_ID=0
    ```
-2. Confirm it is ignored: `git check-ignore intervals-icu-mcp/.env` must print the path. If not, stop and fix `.gitignore` first.
+2. If the folder is a git repo (`git rev-parse` succeeds), confirm the key is ignored: `git check-ignore intervals-icu-mcp/.env` must print the path; if not, stop and fix `.gitignore` first. If there is no git repo or git is not installed (e.g. the athlete downloaded a zip, no GitHub account), skip this check — the key just stays in the local file.
 3. Never echo the key back, never put it in any other file, never `git add` it.
 
 On claude.ai/code (cloud) a `.env` file disappears when the container is recycled. Still write it so this session works, and tell the athlete to also add `INTERVALS_API_KEY` as an environment variable in their cloud environment settings.
@@ -95,7 +95,7 @@ After reconnecting, call `intervals_get_profile` to confirm.
 ## Step 7 — Wrap up
 
 1. Summary: what was set up, the season arc in 3–4 lines, this week's sessions, and the assumptions you made.
-2. Commit the personalised files (`git add -A && git commit -m "Personalise coach for <name>"`), after checking `git status` does **not** list `intervals-icu-mcp/.env`. Ask before pushing.
+2. Only if the folder is a git repo: commit the personalised files (`git add -A && git commit -m "Personalise coach for <name>"`), after checking `git status` does **not** list `intervals-icu-mcp/.env`. Ask before pushing. Without git, skip this and suggest backing up the folder (Google Drive, iCloud, OneDrive) — but tell them `intervals-icu-mcp/.env` holds their key and should not be shared.
 3. Offer: "¿Creo los entrenamientos de esta semana en Intervals.icu?" → then follow the normal Workout Creation Flow in `CLAUDE.md` §8 (calendar check, readiness check for Z4+, confirmation).
 
 From the next conversation on, onboarding is done and the normal Session Start Protocol applies.

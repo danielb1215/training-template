@@ -6,11 +6,13 @@ A personal endurance training coach powered by Claude Code + Intervals.icu. Clau
 
 ### You need
 
-- [Claude Code](https://code.claude.com) (desktop app, CLI or claude.ai/code)
+- [Claude Code](https://code.claude.com) — desktop app or CLI (needs a paid Claude plan: Pro, Max, Team, or API credits). claude.ai/code in the browser requires GitHub
 - [Node.js 18+](https://nodejs.org)
 - A free [Intervals.icu](https://intervals.icu) account connected to Garmin / Wahoo / Strava
 
 ### Steps
+
+**No GitHub account?** Unzip `training-template.zip`, open the folder in the Claude desktop app (*Code* tab → choose the folder) or run `claude` inside it, and continue at step 2. Everything works locally; back the folder up yourself (Drive / iCloud), and don't share `intervals-icu-mcp/.env` — it holds your key.
 
 1. On GitHub click **Use this template → Create a new repository** (make it **private** — it will hold your training data), then open it in Claude Code (or clone it and run `claude` in the folder).
 2. Type:
