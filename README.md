@@ -2,56 +2,48 @@
 
 A personal endurance training coach powered by Claude Code + Intervals.icu. Claude reads your athlete profile, training plan and workout library, then creates structured workouts directly on your Intervals.icu calendar (which auto-syncs to Garmin / Wahoo).
 
-## Quick start (≈ 15 min)
+## Quick start — one prompt
 
-### 0. Requirements
+### You need
 
-- [Claude Code](https://code.claude.com) (CLI, desktop app or claude.ai/code)
-- Node.js 18+
-- A free [Intervals.icu](https://intervals.icu) account connected to Garmin/Strava
+- [Claude Code](https://code.claude.com) (desktop app, CLI or claude.ai/code)
+- [Node.js 18+](https://nodejs.org)
+- A free [Intervals.icu](https://intervals.icu) account connected to Garmin / Wahoo / Strava
 
-### 1. Personalise the repo
+### Steps
+
+1. On GitHub click **Use this template → Create a new repository** (make it **private** — it will hold your training data), then open it in Claude Code (or clone it and run `claude` in the folder).
+2. Type:
+
+   > **Configura mi entrenador** *(or "Set up my coach")*
+
+3. Claude asks for your **Intervals.icu API key** (intervals.icu/settings → Developer Settings) and your **data and goals** — answer in one message.
+4. Claude verifies the key, reads your FTP/LTHR/max HR from Intervals.icu, fills in every file, builds your season plan and this week, and installs the workout server.
+5. Restart Claude Code once (or `/mcp` → *intervals-icu* → *Reconnect*) so the workout tools load. Then: *"Crea los entrenamientos de esta semana"*.
+
+Your key is stored only in `intervals-icu-mcp/.env`, which git ignores — it never goes to GitHub.
+
+**claude.ai/code (cloud)**: also add `INTERVALS_API_KEY` as an environment variable in your environment settings — files that aren't committed (like `.env`) are lost when the cloud container is recycled.
+
+### Day to day
+
+- "¿Qué me toca hoy?" / "What should I do today?"
+- "Planea mi semana"
+- "Crea un entrenamiento de umbral para el jueves"
+- "Analiza la salida de ayer"
+- "¿Cómo me fue la semana pasada?"
+
+<details>
+<summary>Manual setup (without the onboarding prompt)</summary>
 
 ```bash
-./setup.sh
+./setup.sh                                   # name, email, time zone
+echo "INTERVALS_API_KEY=your_key" > intervals-icu-mcp/.env
+node intervals-icu-mcp/check.mjs             # verifies the key, shows FTP/LTHR/max HR
 ```
 
-It asks for your name, email and time zone and fills them in across `CLAUDE.md` and the other files. Run it once, then commit.
-
-### 2. Build the MCP server
-
-```bash
-cd intervals-icu-mcp && npm install && npm run build && cd ..
-```
-
-### 3. Add your Intervals.icu API key
-
-Generate it at https://intervals.icu/settings → Developer Settings. `.mcp.json` reads it from an environment variable, so **the key never goes into git**:
-
-```bash
-export INTERVALS_API_KEY=your_key_here
-```
-
-Add that line to your `~/.zshrc` / `~/.bashrc`. On claude.ai/code (cloud), set it as an environment variable of the environment instead.
-
-### 4. Fill in your athlete files
-
-Open these and replace the `<!-- ... -->` placeholders (or just tell Claude your numbers and let it fill them):
-
-1. `athlete/profile.md` — FTP, LTHR, max HR, available days, weekly hours
-2. `athlete/goals.md` — your A-race and targets
-3. `plans/a-race.md` — event details
-4. `plans/macro.md` — or ask Claude: *"Build my season plan towards my A-race"*
-
-### 5. Start coaching
-
-Open Claude Code in this folder and say:
-
-- "What should I do today?"
-- "Plan my training week"
-- "Create a threshold workout for Thursday"
-- "Analyse yesterday's ride"
-- "How was my training last week?"
+Then fill `athlete/profile.md`, `athlete/goals.md`, `plans/a-race.md` and `plans/macro.md`. Dependencies install automatically the first time Claude Code starts the server (`intervals-icu-mcp/launch.mjs`).
+</details>
 
 ---
 
@@ -59,7 +51,8 @@ Open Claude Code in this folder and say:
 
 ```
 ├── CLAUDE.md                ← Coach brain — Claude's master instructions
-├── .mcp.json                ← MCP server config (API key from env var)
+├── ONBOARDING.md            ← First-run setup flow Claude follows
+├── .mcp.json                ← MCP server config (key read from intervals-icu-mcp/.env)
 ├── .claude/settings.json    ← Injects your local time with every message
 ├── athlete/                 ← YOUR profile, goals, readiness log, fuelling
 ├── plans/                   ← Season (macro), block, week, A-race

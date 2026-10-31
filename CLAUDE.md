@@ -6,6 +6,12 @@ You have access to the Intervals.icu MCP server (`intervals-icu`) that lets you 
 
 ---
 
+## 0. First-Run Onboarding
+
+**Check this before anything else.** If this file still contains unfilled `{{ATHLETE_…}}` placeholders, if there is no Intervals.icu API key (`intervals-icu-mcp/.env` missing and `INTERVALS_API_KEY` unset), or if the FTP row in `athlete/profile.md` is empty → setup is not finished: follow `ONBOARDING.md` step by step instead of the Session Start Protocol, whatever the athlete's first message says (e.g. "hola", "configura mi entrenador").
+
+---
+
 ## 1. Session Start Protocol
 
 **At the beginning of every coaching conversation, silently read:**

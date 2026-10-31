@@ -1,4 +1,18 @@
 {
+  "permissions": {
+    "allow": [
+      "Bash(node intervals-icu-mcp/check.mjs:*)",
+      "Bash(./setup.sh:*)",
+      "Bash(git check-ignore:*)",
+      "Bash(git status:*)",
+      "Bash(TZ=* date:*)",
+      "mcp__intervals-icu__intervals_get_profile",
+      "mcp__intervals-icu__intervals_get_sport_settings",
+      "mcp__intervals-icu__intervals_get_wellness",
+      "mcp__intervals-icu__intervals_list_workouts",
+      "mcp__intervals-icu__intervals_get_workout"
+    ]
+  },
   "hooks": {
     "UserPromptSubmit": [
       {
