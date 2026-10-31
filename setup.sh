@@ -3,7 +3,7 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-if ! grep -rqI '{{ATHLETE_NAME}}\|{{TIMEZONE}}' --exclude=setup.sh --exclude=ONBOARDING.md --exclude-dir=.git --exclude-dir=node_modules . ; then
+if ! grep -rqI '{{ATHLETE_NAME}}\|{{TIMEZONE}}' --exclude=setup.sh --exclude=ONBOARDING.md --exclude-dir=claude-desktop --exclude-dir=.git --exclude-dir=node_modules . ; then
   echo "Already personalised — nothing to do."; exit 0
 fi
 
@@ -22,7 +22,7 @@ if ! TZ="$TZONE" date >/dev/null 2>&1 || [ ! -e "/usr/share/zoneinfo/$TZONE" ]; 
 fi
 
 export FULL FIRST EMAIL TZONE
-grep -rlI '{{ATHLETE_\|{{TIMEZONE}}' --exclude=setup.sh --exclude=ONBOARDING.md --exclude-dir=.git --exclude-dir=node_modules . |
+grep -rlI '{{ATHLETE_\|{{TIMEZONE}}' --exclude=setup.sh --exclude=ONBOARDING.md --exclude-dir=claude-desktop --exclude-dir=.git --exclude-dir=node_modules . |
   while IFS= read -r f; do
     perl -pi -e 's/\{\{ATHLETE_FULL_NAME\}\}/$ENV{FULL}/g; s/\{\{ATHLETE_NAME\}\}/$ENV{FIRST}/g; s/\{\{ATHLETE_EMAIL\}\}/$ENV{EMAIL}/g; s/\{\{TIMEZONE\}\}/$ENV{TZONE}/g' "$f"
     echo "  updated $f"

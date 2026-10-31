@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "intervals-icu": {
+      "command": "node",
+      "args": ["/Users/TU_USUARIO/training-template/intervals-icu-mcp/launch.mjs"],
+      "env": {
+        "INTERVALS_API_KEY": "PEGA_AQUI_TU_API_KEY",
+        "INTERVALS_ATHLETE_ID": "0"
+      }
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem", "/Users/TU_USUARIO/training-template"]
+    }
+  }
+}

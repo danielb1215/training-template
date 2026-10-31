@@ -12,6 +12,8 @@ A personal endurance training coach powered by Claude Code + Intervals.icu. Clau
 
 ### Steps
 
+**No Claude Code / Free plan?** Use the Claude desktop app (chat) instead — step-by-step guide in Spanish: [`claude-desktop/GUIA.md`](claude-desktop/GUIA.md).
+
 **No GitHub account?** Unzip `training-template.zip`, open the folder in the Claude desktop app (*Code* tab → choose the folder) or run `claude` inside it, and continue at step 2. Everything works locally; back the folder up yourself (Drive / iCloud), and don't share `intervals-icu-mcp/.env` — it holds your key.
 
 1. On GitHub click **Use this template → Create a new repository** (make it **private** — it will hold your training data), then open it in Claude Code (or clone it and run `claude` in the folder).
@@ -54,6 +56,7 @@ Then fill `athlete/profile.md`, `athlete/goals.md`, `plans/a-race.md` and `plans
 ```
 ├── CLAUDE.md                ← Coach brain — Claude's master instructions
 ├── ONBOARDING.md            ← First-run setup flow Claude follows
+├── claude-desktop/          ← Kit for the Claude desktop app (Free plan, no Claude Code)
 ├── .mcp.json                ← MCP server config (key read from intervals-icu-mcp/.env)
 ├── .claude/settings.json    ← Injects your local time with every message
 ├── athlete/                 ← YOUR profile, goals, readiness log, fuelling

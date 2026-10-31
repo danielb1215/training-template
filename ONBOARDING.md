@@ -66,7 +66,7 @@ Time zone: the Intervals.icu `timezone` (IANA, e.g. `Europe/Madrid`), or what th
 
 If the permission prompt blocks the inline-variable form, export them first (`export FULL=... FIRST=... EMAIL=... TZONE=...`) and run `./setup.sh`.
 
-On Windows without bash, do the same replacements with Edit across the repo: `{{ATHLETE_FULL_NAME}}`, `{{ATHLETE_NAME}}`, `{{ATHLETE_EMAIL}}`, `{{TIMEZONE}}`. Verify none remain: `grep -rn "{{ATHLETE_\|{{TIMEZONE}}" --exclude-dir=.git --exclude=setup.sh --exclude=ONBOARDING.md .` (ignore `.specify/`).
+On Windows without bash, do the same replacements with Edit across the repo: `{{ATHLETE_FULL_NAME}}`, `{{ATHLETE_NAME}}`, `{{ATHLETE_EMAIL}}`, `{{TIMEZONE}}`. Verify none remain: `grep -rn "{{ATHLETE_\|{{TIMEZONE}}" --exclude-dir=.git --exclude=setup.sh --exclude=ONBOARDING.md --exclude-dir=claude-desktop .` (ignore `.specify/`).
 
 ## Step 5 — Fill the athlete and plan files
 

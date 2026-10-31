@@ -26,10 +26,18 @@ export function loadEnv() {
 function ensureDeps() {
   if (existsSync(join(here, "node_modules", "@modelcontextprotocol", "sdk"))) return;
   console.error("[intervals-icu] First run: installing dependencies (npm install --omit=dev)...");
-  const r = spawnSync("npm", ["install", "--omit=dev", "--no-audit", "--no-fund"], {
+  // GUI apps (Claude Desktop) often start with a minimal PATH: prefer the npm
+  // that ships next to this node binary, and put node's folder on PATH for it.
+  const nodeDir = dirname(process.execPath);
+  const win = process.platform === "win32";
+  const localNpm = join(nodeDir, win ? "npm.cmd" : "npm");
+  const npm = existsSync(localNpm) ? localNpm : "npm";
+  const PATH = [nodeDir, process.env.PATH || ""].join(win ? ";" : ":");
+  const r = spawnSync(win ? `"${npm}"` : npm, ["install", "--omit=dev", "--no-audit", "--no-fund"], {
     cwd: here,
     stdio: ["ignore", 2, 2],
-    shell: process.platform === "win32",
+    shell: win,
+    env: { ...process.env, PATH },
   });
   if (r.status !== 0) {
     console.error("[intervals-icu] npm install failed. Run it manually: cd intervals-icu-mcp && npm install");
