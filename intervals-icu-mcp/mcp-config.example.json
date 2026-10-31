@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "intervals-icu": {
+      "command": "node",
+      "args": ["/absolute/path/to/intervals-icu-mcp/dist/index.js"],
+      "env": {
+        "INTERVALS_API_KEY": "REPLACE_WITH_YOUR_API_KEY",
+        "INTERVALS_ATHLETE_ID": "0"
+      }
+    }
+  }
+}

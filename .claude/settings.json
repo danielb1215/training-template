@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"Athlete local time ({{TIMEZONE}}): $(TZ={{TIMEZONE}} date '+%A %Y-%m-%d %H:%M'). Use this as 'today', not the UTC system date.\""
+          }
+        ]
+      }
+    ]
+  }
+}

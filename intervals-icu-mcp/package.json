@@ -1,0 +1,30 @@
+{
+  "name": "intervals-icu-mcp",
+  "version": "0.1.0",
+  "description": "MCP server for creating and managing planned workouts on Intervals.icu, with Garmin Connect sync via Intervals.icu's own integration.",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "intervals-icu-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "inspector": "npx @modelcontextprotocol/inspector node dist/index.js"
+  },
+  "keywords": ["mcp", "intervals.icu", "cycling", "training", "garmin", "workouts"],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.7.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
